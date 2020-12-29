@@ -8,3 +8,19 @@ services:
       dockerfile: Something.API/Dockerfile
     ports:
       - 8080:80
+    networks:
+      - sample_network
+
+  something.ui:
+    image: ${DOCKER_REGISTRY-}somethingui
+    build:
+      context: .
+      dockerfile: Something.UI/Dockerfile
+    networks:
+      - sample_network
+    depends_on:
+      - something.api
+      
+networks:
+  sample_network:
+    driver: bridge
