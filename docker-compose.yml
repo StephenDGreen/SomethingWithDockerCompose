@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  something.api:
+    image: ${DOCKER_REGISTRY-}somethingapi
+    build:
+      context: .
+      dockerfile: Something.API/Dockerfile
+    ports:
+      - 8080:80
